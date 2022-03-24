@@ -1,34 +1,43 @@
 #include <cstdio>
+#include <cstdlib>
+#include "error.h"
 
-int main()
+int main(int argc, char** argv)
 {
-    const float g = 9.81f;
-    float mass, drag_coefficient, air_density, area, k;
-    float x_0, y_0, z_0, u_0, v_0, w_0;
+    try
+    {
+        const float g = 9.81f;
+        float mass, drag_coefficient, air_density, area, k;
+        float x_0, y_0, z_0, u_0, v_0, w_0;
 
-    printf("Mass: ");
-    scanf_s("%f", &mass);
-    printf("Drag Coefficient: ");
-    scanf_s("%f", &drag_coefficient);
-    printf("Air density: ");
-    scanf_s("%f", &air_density);
-    printf("Cross-sectional Area: ");
-    scanf_s("%f", &area);
+        printf("Mass: ");
+        scanf_s("%f", &mass);
+        printf("Drag Coefficient: ");
+        scanf_s("%f", &drag_coefficient);
+        printf("Air density: ");
+        scanf_s("%f", &air_density);
+        printf("Cross-sectional Area: ");
+        scanf_s("%f", &area);
 
-    printf("x_0: ");
-    scanf_s("%f", &x_0);
-    printf("y_0: ");
-    scanf_s("%f", &y_0);
-    printf("z_0: ");
-    scanf_s("%f", &z_0);
-    printf("u_0: ");
-    scanf_s("%f", &u_0);
-    printf("v_0: ");
-    scanf_s("%f", &v_0);
-    printf("w_0: ");
-    scanf_s("%f", &w_0);
+        printf("x_0: ");
+        scanf_s("%f", &x_0);
+        printf("y_0: ");
+        scanf_s("%f", &y_0);
+        printf("z_0: ");
+        scanf_s("%f", &z_0);
+        printf("u_0: ");
+        scanf_s("%f", &u_0);
+        printf("v_0: ");
+        scanf_s("%f", &v_0);
+        printf("w_0: ");
+        scanf_s("%f", &w_0);
 
-    k = 0.5f * drag_coefficient * air_density * area;
-
-    return 0;
+        k = 0.5f * drag_coefficient * air_density * area;
+    }
+    catch (Error e)
+    {
+        fprintf(stderr, "%s: %s\n", argv[0], e.what());
+        return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
 }
